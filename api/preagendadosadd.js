@@ -34,7 +34,7 @@ module.exports = app => {
           )
           .where("preagenda.id", userId[0])
           .then(results => {
-            res.json(results);
+            res.json(results[0]);
           })
           .catch(err => {
             res.json(err);
