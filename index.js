@@ -12,7 +12,7 @@ consign()
 
 app.db = db;
 
-var porta = process.env.PORT || 8080;
+var porta = process.env.PORT || 3000;
 
 app.listen(porta, () => {
   console.log("Backend rodando ...");

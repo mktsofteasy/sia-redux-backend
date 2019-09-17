@@ -17,7 +17,7 @@ module.exports = app => {
       .then(
         _ => res.status(204),
         res.json({
-          msg: "Agendado com sucesso!"
+          id: preagenda.id
         })
       )
       .catch(err => res.status(400).json(err));
