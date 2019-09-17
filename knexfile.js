@@ -8,6 +8,11 @@ module.exports = {
     user: "postgres",
     password: "961735A#"
   },
+  //connection: {
+  //  database: "siaredux",
+  //  user: "postgres",
+  //  password: "postgres"
+  //},
   pool: {
     min: 2,
     max: 10

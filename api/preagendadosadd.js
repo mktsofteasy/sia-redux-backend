@@ -2,7 +2,6 @@ module.exports = app => {
   const preagendadosadd = (req, res) => {
     app
       .db("preagenda")
-      .returning("id")
       .insert({
         unidade_id: req.body.agendamento.laboratorio.unidadeid,
         convenio_id: req.body.agendamento.tipoatendimento.id,
@@ -15,18 +14,31 @@ module.exports = app => {
         status: "Pendente",
         user_id: req.body.user.dados.id
       })
-      .from("preagenda")
-      .join("unidades", "unidades.id", "=", "preagenda.unidade_id")
-			.join("laboratorios", "laboratorios.id","=","unidades.laboratorio_id")
-      .select(
-				"preagenda.id",
-				"laboratorios.nome as lab",
-				"unidades.nome as unid",
-				"preagenda.status",
-      ).orderBy("id","desc")
-			.where("preagenda.user_id", id)
-      .then(results => {
-        res.json(results);
+      .returning("id")
+      .then(userId => {
+        return app
+          .db("preagenda")
+          .from("preagenda")
+          .join("unidades", "unidades.id", "=", "preagenda.unidade_id")
+          .join(
+            "laboratorios",
+            "laboratorios.id",
+            "=",
+            "unidades.laboratorio_id"
+          )
+          .select(
+            "preagenda.id",
+            "laboratorios.nome as lab",
+            "unidades.nome as unid",
+            "preagenda.status"
+          )
+          .where("preagenda.id", userId[0])
+          .then(results => {
+            res.json(results);
+          })
+          .catch(err => {
+            res.json(err);
+          });
       })
       .catch(err => res.status(400).json(err));
   };
