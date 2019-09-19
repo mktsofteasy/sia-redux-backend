@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const db = require("./config/db");
 const consign = require("consign");
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.json({ limit: "200mb", type: "application/json" }));
 
 consign()
   .include("./config/passport.js")
