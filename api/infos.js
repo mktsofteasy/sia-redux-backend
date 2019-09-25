@@ -7,6 +7,7 @@ module.exports = app => {
       .update({
         datanascimento: req.body.infos.datanascimento,
         email: req.body.infos.email,
+        sexo: req.body.infos.sexo,
         celular: req.body.infos.celular,
         cep: req.body.infos.endereco.cep,
         logradouro: req.body.infos.endereco.logradouro,
