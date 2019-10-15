@@ -18,5 +18,5 @@ app.db = db;
 var porta = process.env.PORT || 3000;
 
 app.listen(porta, () => {
-  console.log("Backend rodando ...");
+  console.log("Backend rodando local ...");
 });
