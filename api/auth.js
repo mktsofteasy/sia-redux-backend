@@ -18,6 +18,7 @@ module.exports = app => {
         "users.password",
         "users.nomecompleto",
         "users.visita",
+        "users.pushtoken",
         "users.convenio_id",
         "convenios.fantasia"
       )
@@ -28,8 +29,18 @@ module.exports = app => {
       bcrypt.compare(req.body.dados.senha, user.password, (err, isMatch) => {
         if (err || !isMatch) {
           return res.status(401).json({ error: "Ops! Senha inválida." });
+        } else if ( user.pushtoken !== req.body.dados.pushToken) {
+          app
+          .db("users")
+          .where({ cpf: req.body.dados.cpf })
+          .update({
+            pushtoken: req.body.dados.pushToken
+          })
+          .then(_ =>
+            res.status(204)
+          )
+          .catch(err => res.status(400).json(err));
         }
-
         const payload = { id: user.id };
         res.json({
           dados: {
@@ -37,6 +48,7 @@ module.exports = app => {
             token: jwt.encode(payload, authSecret),
             nomecompleto: user.nomecompleto,
             cpf: user.cpf,
+            pushtoken: req.body.dados.pushToken,
             visita: user.visita
           },
           convenio: {

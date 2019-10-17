@@ -17,14 +17,16 @@ module.exports = app => {
           nomecompleto: req.body.dados.nomecompleto,
           cpf: req.body.dados.cpf,
           password,
-          visita: req.body.dados.visita
+          visita: req.body.dados.visita,
+          pushtoken: req.body.dados.pushToken
         })
         .then(
           _ => res.status(204),
           res.json({
             dados: {
               cpf: req.body.dados.cpf,
-              senha: req.body.dados.senha
+              senha: req.body.dados.senha,
+              pushtoken: req.body.dados.pushToken
             }
           })
         )
