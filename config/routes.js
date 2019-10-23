@@ -9,4 +9,6 @@ module.exports = app => {
   app.get("/preagendadosdet/:id", app.api.preagendadosdet.preagendadosdet);
   app.post("/preagendadosadd", app.api.preagendadosadd.preagendadosadd);
   app.get("/pushnotification", app.api.pushnotification.enviopush);
+  app.get("/agendados/:id", app.api.agendados.agendados);
+  app.get("/agendadosexm/:id", app.api.agendadosexm.agendadosexm);
 };
