@@ -3,6 +3,7 @@ module.exports = app => {
   app.post("/signin", app.api.auth.signin);
   app.put("/infos", app.api.infos.save);
   app.get("/convenios", app.api.convenios.list);
+  app.get("/labs/:id", app.api.labs.labs);
   app.get("/labconv/:id", app.api.labconv.labconv);
   app.get("/laboratorios/:id", app.api.laboratorios.laboratorios);
   app.get("/preagendados/:id", app.api.preagendados.preagendados);
