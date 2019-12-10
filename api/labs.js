@@ -9,7 +9,8 @@ module.exports = app => {
         "primaria",
         "secundaria",
         "tercearia",
-        "conexao"
+        "conexao",
+        "logo"
       )
       .where("id", req.params.id)
       .then(results => {
