@@ -15,7 +15,7 @@ consign()
 
 app.db = db;
 
-var porta = process.env.PORT || 3000;
+var porta = process.env.PORT || 3030;
 
 app.listen(porta, () => {
   console.log("Backend rodando local ...");

@@ -12,4 +12,8 @@ module.exports = app => {
   app.get("/pushnotification", app.api.pushnotification.enviopush);
   app.get("/agendados/:id", app.api.agendados.agendados);
   app.get("/agendadosexm/:id", app.api.agendadosexm.agendadosexm);
+  // NOVAS ROTAS
+  app.post("/registro", app.api.registro.save);
+  app.post("/login", app.api.login.signin);
+  app.post("/preagendar", app.api.preagendar.preagendar);
 };

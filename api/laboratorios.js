@@ -8,6 +8,7 @@ module.exports = app => {
         "laboratorios.id as laboratorio_id",
         "laboratorios.nome as laboratorio_nome",
         "unidades.id as unidade_id",
+        "unidades.posto",
         "unidades.nome",
         "unidades.cep",
         "unidades.logradouro",
@@ -20,7 +21,7 @@ module.exports = app => {
         "unidades.horario",
         "unidades.estacionamento"
       )
-      .where("unidades.id", req.params.id)
+      .where("unidades.laboratorio_id", req.params.id)
       .then(results => {
         res.json(results);
       })
