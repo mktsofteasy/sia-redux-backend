@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt-nodejs");
 module.exports = app => {
   const signin = async (req, res) => {
     if (!req.body.email || !req.body.senha) {
-      return res.status(400).json({ error: "Ops! Preencha todos os dados." });
+      return res.json({ error: "dados", msg: "Ops! Preencha todos os dados." });
     }
 
     const user = await app
@@ -27,7 +27,7 @@ module.exports = app => {
     if (user) {
       bcrypt.compare(req.body.senha, user.password, (err, isMatch) => {
         if (err || !isMatch) {
-          return res.status(401).json({ error: "Ops! Senha inválida." });
+          return res.json({ error: "senha", msg: "Ops! Senha inválida." });
         } else if (parseInt(req.body.clienteid) === user.cliente_id) {
           const payload = { id: user.id };
           res.json({
@@ -37,12 +37,10 @@ module.exports = app => {
             nomecompleto: user.nomecompleto,
             token: jwt.encode(payload, authSecret)
           });
-        } else {
-          res.status(401).json({ autorization: false });
         }
       });
     } else {
-      res.status(400).json({ error: "Ops! CPF não encontrado." });
+      res.json({ error: "e-mail", msg: "Ops! E-mail não cadastrado." });
     }
   };
 

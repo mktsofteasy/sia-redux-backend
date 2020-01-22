@@ -16,7 +16,9 @@ module.exports = app => {
   app.post("/registro", app.api.registro.save);
   app.post("/login", app.api.login.signin);
   app.post("/preagendar", app.api.preagendar.preagendar);
-  app.del("/preagendados/cancela/:id", app.api.preagendadosdel.cancelaPreagenda);
+  app.put("/preagendados/cancela/:id", app.api.preagendadosdel.cancelaPreagenda);
   app.post("/mensagens", app.api.mensagens.mensagens);
   app.post("/mensagens/update", app.api.mensagens.update);
+  app.delete("/mensagens/lixeira", app.api.mensagens.esvaziarLixeira);
+  app.get("/perfil/:id", app.api.perfil.perfil);
 };

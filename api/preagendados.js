@@ -12,7 +12,8 @@ module.exports = app => {
 				"preagenda.status",
       ).orderBy("id","desc")
 			//.where("preagenda.user_id", req.params.id)
-			.where("preagenda.user_id", req.params.id)
+      .where("preagenda.user_id", req.params.id)
+      .where("preagenda.status" , "Pendente")
       .then(results => {
         res.json(results);
       })

@@ -44,5 +44,21 @@ module.exports = app => {
       });
   };
 
-  return { mensagens, update };
+  const esvaziarLixeira = (req, res) => {
+    app
+      .db("mensagens")
+  .from("mensagens")
+      .where("user_id", req.body.user_id)
+      .where("cliente_id", req.body.cliente_id)
+      .where("status", "lixeira")
+      .del()
+      .then(results => {
+        res.json(results);
+      })
+      .catch(err => {
+        res.json(err);
+      });
+  };
+
+  return { mensagens, update, esvaziarLixeira };
 };

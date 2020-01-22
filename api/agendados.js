@@ -11,6 +11,16 @@ module.exports = app => {
         "agendado.id as id",
         "laboratorios.nome as laboratorio_nome",
         "unidades.nome",
+        "unidades.telefone",
+        "unidades.cep",
+        "unidades.logradouro",
+        "unidades.numero",
+        "unidades.complemento",
+        "unidades.bairro",
+        "unidades.cidade",
+        "unidades.uf",
+        "unidades.horario",
+        "unidades.estacionamento",
         "agendado.orcamento_id as orcamento",
         "agendado.datacoleta as datacoleta"
       )
